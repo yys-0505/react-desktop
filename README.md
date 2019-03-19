@@ -4,20 +4,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 https://yys-0505.github.io/react-desktop/build/index.html
 
 ## Key Points
-react
-antd
-react-router-dom
-redux
-redux-thunk
-react-redux
-immutable
-redux-immutable
-combineReducer
-PureComponent
-react-loadable
-无状态组件
-setupProxy
-process.env.NODE_ENV
+```
+#react
+#antd
+#react-router-dom
+#redux
+#redux-thunk
+#react-redux
+#immutable
+#redux-immutable
+#combineReducer
+#PureComponent
+#react-loadable
+#无状态组件
+#setupProxy
+#process.env.NODE_ENV
+```
 
 ## Available Scripts
 
