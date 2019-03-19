@@ -1,0 +1,1 @@
+export const NAME_OR_PSWD_WRONG = "用户名或密码错误!";

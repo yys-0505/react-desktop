@@ -2,7 +2,8 @@ import { fromJS } from 'immutable'
 import * as constants from '../constants';
 
 const defaultState = fromJS({
-  showLoading: false
+  showLoading: false,
+  login: false
 });
 
 const reducer = (state = defaultState, action) => {
@@ -11,6 +12,8 @@ const reducer = (state = defaultState, action) => {
       return state.set("showLoading", true);
     case constants.HIDE_LOADING:
       return state.set("showLoading", false);
+    case constants.CHANGE_LOGIN_STATUS:
+      return state.set("login", action.value);
     default:
       return state;
   }

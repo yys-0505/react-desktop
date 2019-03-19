@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react'
 
-class Page11 extends Component {
+class Page13 extends Component {
   render () {
     return (
       <Fragment>
-        page11
+        page13
       </Fragment>
     )
   }
 }
 
-export default Page11;
+export default Page13;

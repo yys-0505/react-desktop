@@ -1,19 +1,36 @@
-import Page1 from '../containers/Page1';
-import Page2 from '../containers/Page2';
-import Page11 from '../containers/Page11';
-import Page12 from '../containers/Page12';
+import Page111 from '../containers/Page111';
+import Page112 from '../containers/Page112';
+import Page12 from '../containers/Page12/loadable';
+import Page13 from '../containers/Page13/loadable';
+import Page21 from '../containers/Page21';
+import Page22 from '../containers/Page22';
 import NotFound from '../containers/NotFound'
 
 let routes = [
 	{
-		path: "/",
-		component: Page1,
+		path: "/app/menu1",
+		key: "menu1",
 		routes: [
-			{ path: "/1/", component: Page11 },
-			{ path: "/1/2", component: Page12 }
+			{
+				path: "/sub1",
+				key: "sub1",
+				routes: [
+					{ path: "/opt1", key: "opt1", component: Page111 },
+					{ path: "/opt2", key: "opt2", component: Page112 }
+				]
+			},
+			{ path: "/sub2", key: "sub2", component: Page12 },
+			{ path: "/sub3", key: "sub3", component: Page13 }
 		]
 	},
-	{ path: "/2", component: Page2 },
-	{ component: NotFound }
+	{
+		path: "/app/menu2",
+		key: "menu2",
+		routes: [
+			{ path: "/sub1", key: "sub1", component: Page21 },
+			{ path: "/sub2", key: "sub2", component: Page22 }
+		]
+	},
+	{ component: NotFound, key: 'notfound' }
 ];
 export default routes;

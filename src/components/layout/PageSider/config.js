@@ -2,31 +2,39 @@ const menuList = [
   {
     name: 'subnav 1',
     icon: 'user',
-    key: 'sub1',
+    key: '/app/menu1',
     items: [
-      { name: 'option1', key: '/' },
-      { name: 'option2', key: '/2' },
-      { name: 'option3', key: '/3' }
+      {
+        name: 'Submenu',
+        key: '/sub1',
+        items: [
+          { name: 'option1', key: '/opt1' },
+          { name: 'option2', key: '/opt2' },
+          { name: 'option3', key: '/opt3' }
+        ]
+      },
+      { name: 'option2', key: '/sub2' },
+      { name: 'option3', key: '/sub3' }
     ]
   },
   {
     name: 'subnav 2',
     icon: 'laptop',
-    key: 'sub2',
+    key: '/app/menu2',
     items: [
-      { name: 'option1', key: '/4' },
-      { name: 'option2', key: '/5' },
-      { name: 'option3', key: '/6' }
+      { name: 'option1', key: '/sub1' },
+      { name: 'option2', key: '/sub2' },
+      { name: 'option3', key: '/sub3' }
     ]
   },
   {
     name: 'subnav 3',
     icon: 'notification',
-    key: 'sub3',
+    key: '/app/menu3',
     items: [
-      { name: 'option1', key: '/7' },
-      { name: 'option2', key: '/8' },
-      { name: 'option3', key: '/9' }
+      { name: 'option1', key: '/sub1' },
+      { name: 'option2', key: '/sub2' },
+      { name: 'option3', key: '/sub3' }
     ]
   }
 ];

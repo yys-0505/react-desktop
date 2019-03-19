@@ -16,19 +16,29 @@ class PageSider extends Component {
     };
   }
   componentWillReceiveProps () {
-    let selectedKeys = this.props.history.location.pathname;
+    let selectedKeys = this.props.history.location.pathname;// /app/menu1/sub1/opts
     this.setState(() => ({
       selectedKeys
     }));
-    let openMenu = menuList.find(menu => {
-      return menu.items.find(item => {
-        return item.key === selectedKeys;
-      });
-    });
-    console.log(selectedKeys, openMenu);
-    if (openMenu && this.state.openKeys.indexOf(openMenu.key) === -1) {
-      this.setState((prevState) => ({
-        openKeys: [...prevState.openKeys, openMenu.key]
+    let selectedKeysArr = selectedKeys.match(/\/\w+/g);//["/app", "/menu2", "/sub1", "opt1"]
+    if (selectedKeysArr) {
+      for (let i=selectedKeysArr.length -2; i>0; i--) {
+        let keys = "";
+        let j = 0;
+        while (j <= i) {
+          keys += selectedKeysArr[j];
+          j ++;
+        }
+        if (this.state.openKeys.indexOf(keys) === -1) {
+          this.setState((prevState) => ({
+            openKeys: [...prevState.openKeys, keys]
+          }));
+        }
+      }
+    } else {
+      this.setState(() => ({
+        selectedKeys: "/app/menu1/sub1/opt1",
+        openKeys: ['/app/menu1', '/app/menu1/sub1']
       }));
     }
   }
@@ -38,9 +48,9 @@ class PageSider extends Component {
         <Menu
           mode="inline"
           selectedKeys={[this.state.selectedKeys]}
-          openKeys={this.state.openKeys}
+          openKeys={this.state.openKeys}//与SubMenu key对应
           onOpenChange={this.onOpenChange}
-          style={{ height: '100%', borderRight: 0 }}
+          style={{ height: '100%', borderRight: 0, overflowY: 'auto' }}
         >
           { this.renderMenu() }
         </Menu>
@@ -48,16 +58,32 @@ class PageSider extends Component {
     )
   }
   renderMenu () {
-    return menuList.map((menu, index) => {
+    return menuList.map((level1) => {
       return (
-        <SubMenu key={menu.key} title={<span><Icon type={menu.icon} />{menu.name}</span>}>
+        <SubMenu key={level1.key} title={<span><Icon type={level1.icon} />{level1.name}</span>}>
           {
-            menu.items.map((item) => {
-              return (
-                <Menu.Item key={item.key}>
-                  <Link to={item.key}>{item.name}</Link>
-                </Menu.Item>
-              )
+            level1.items.map((level2) => {
+              if (level2.items) {
+                return (
+                  <SubMenu key={level1.key + level2.key} title={level2.name}>
+                    {
+                      level2.items.map(level3 => {
+                        return (
+                          <Menu.Item key={level1.key + level2.key + level3.key}>
+                            <Link to={level1.key + level2.key + level3.key}>{level3.name}</Link>
+                          </Menu.Item>
+                        )
+                      })
+                    }
+                  </SubMenu>
+                )
+              } else {
+                return (
+                  <Menu.Item key={level1.key + level2.key}>
+                    <Link to={level1.key + level2.key}>{level2.name}</Link>
+                  </Menu.Item>
+                )
+              }
             })
           }
         </SubMenu>
